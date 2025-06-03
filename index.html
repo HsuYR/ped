@@ -1,56 +1,68 @@
 <html>
     <head>
         <title>兒科劑量小幫手</title>
+        <style>
+            body, body * {
+                font-size: 28pt;
+            }
+        </style>
     </head>
     <body>
-        <label for="weight">體重：</label><input type="number" name="weight" id="weight" value=20> kg
-        <select id="drug">
-            <option value="">Choose a drug</option>
-            <optgroup label="止痛退燒">
-                <option value="antiphen">Anti-phen syr. (Acetaminophen)</option>
-                <option value="depyretin">Depyretin tab (Acetaminophen)</option>
-                <option value="ibuprofen">Idofen susp. (Ibuprofen)</option>
-                <option value="diclofenac">Votalin supp. (Diclofenac)</option>
-            </optgroup>
-            <optgroup label="抗組織胺、鼻塞">
-                <option value="cypromin">Cypromin syr. (Cyproheptadine)</option>
-                <option value="pilian">Pilian tab (Cyproheptadine)</option>
-                <option value="cetirizine">Cetirizine soln</option>
-                <option value="xyzal">Xyzal tab (Levocetirizine)</option>
-                <option value="peacesyr">Peace syr. (Triprolidine/Pseudoephedrine)</option>
-                <option value="peacetab">Peace tab. (Triprolidine/Pseudoephedrine)</option>
-            </optgroup>
-            <optgroup label="咳嗽、喘">
-                <option value="casteine">Casteine syr. (S-Carboxymethylcysteine)</option>
-                <option value="colin">Colin syr. (Chlorpheniramine/Platycodon/Glycyrrhizine)</option>
-                <option value="meptin">Meptin liq. (Procaterol)</option>
-                <option value="meptintab">Meptin-mini tab (Procaterol)</option>
-                <option value="xanthium">Xanthium (Theophylline)</option>
-                <option value="aminophyllin">Aminophyllin inj.</option>
-            </optgroup>
-            <optgroup label="嘔吐拉肚子">
-                <option value="cod">Cod</option>
-                <option value="haddock">Haddock</option>
-                <option value="salmon">Salmon</option>
-                <option value="turbot">Turbot</option>
-            </optgroup>
-            <optgroup label="抗微生物">
-                <option value="cod">Cod</option>
-                <option value="haddock">Haddock</option>
-                <option value="salmon">Salmon</option>
-                <option value="turbot">Turbot</option>
-            </optgroup>
-            <optgroup label="其他">
-                <option value="cod">Cod</option>
-                <option value="haddock">Haddock</option>
-                <option value="salmon">Salmon</option>
-                <option value="turbot">Turbot</option>
-            </optgroup>
-        </select>
-        <button action="" onclick="updateDose()">計算</button>
-        <result id="dose"></result>
+        <div>
+            <label for="weight">體重：</label><input type="number" name="weight" id="weight" value=20> kg
+            <select id="drug">
+                <option value="">Choose a drug</option>
+                <optgroup label="止痛退燒">
+                    <option value="antiphen">Anti-phen syr. (Acetaminophen)</option>
+                    <option value="depyretin">Depyretin tab (Acetaminophen)</option>
+                    <option value="ibuprofen">Idofen susp. (Ibuprofen)</option>
+                    <option value="diclofenac">Votalin supp. (Diclofenac)</option>
+                </optgroup>
+                <optgroup label="抗組織胺、鼻塞">
+                    <option value="cypromin">Cypromin syr. (Cyproheptadine)</option>
+                    <option value="pilian">Pilian tab (Cyproheptadine)</option>
+                    <option value="cetirizine">Cetirizine soln</option>
+                    <option value="xyzal">Xyzal tab (Levocetirizine)</option>
+                    <option value="peacesyr">Peace syr. (Triprolidine/Pseudoephedrine)</option>
+                    <option value="peacetab">Peace tab. (Triprolidine/Pseudoephedrine)</option>
+                </optgroup>
+                <optgroup label="咳嗽、喘">
+                    <option value="casteine">Casteine syr. (S-Carboxymethylcysteine)</option>
+                    <option value="colin">Colin syr. (Chlorpheniramine/Platycodon/Glycyrrhizine)</option>
+                    <option value="meptin">Meptin liq. (Procaterol)</option>
+                    <option value="meptintab">Meptin-mini tab (Procaterol)</option>
+                    <option value="xanthium">Xanthium (Theophylline)</option>
+                    <option value="aminophyllin">Aminophyllin inj.</option>
+                </optgroup>
+                <optgroup label="嘔吐拉肚子">
+                    <option value="cod">Cod</option>
+                    <option value="haddock">Haddock</option>
+                    <option value="salmon">Salmon</option>
+                    <option value="turbot">Turbot</option>
+                </optgroup>
+                <optgroup label="抗微生物">
+                    <option value="cod">Cod</option>
+                    <option value="haddock">Haddock</option>
+                    <option value="salmon">Salmon</option>
+                    <option value="turbot">Turbot</option>
+                </optgroup>
+                <optgroup label="其他">
+                    <option value="cod">Cod</option>
+                    <option value="haddock">Haddock</option>
+                    <option value="salmon">Salmon</option>
+                    <option value="turbot">Turbot</option>
+                </optgroup>
+            </select>
+            <button action="" onclick="updateDose()">計算</button>
+        </div>
+        <div>
+            <result id="dose"></result>
+        </div>
         <br>
-        <text id="description"></text>
+        <br>
+        <div>
+            <text id="description"></text>
+        </div>
     </body>
     <script>
         function round(n, d=0) {
