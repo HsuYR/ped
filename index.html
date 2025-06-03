@@ -1,0 +1,196 @@
+<html>
+    <head>
+        <title>兒科劑量小幫手</title>
+    </head>
+    <body>
+        <label for="weight">體重：</label><input type="number" name="weight" id="weight" value=20> kg
+        <select id="drug">
+            <option value="">Choose a drug</option>
+            <optgroup label="止痛退燒">
+                <option value="antiphen">Anti-phen syr. (Acetaminophen)</option>
+                <option value="depyretin">Depyretin tab (Acetaminophen)</option>
+                <option value="ibuprofen">Idofen susp. (Ibuprofen)</option>
+                <option value="diclofenac">Votalin supp. (Diclofenac)</option>
+            </optgroup>
+            <optgroup label="抗組織胺、鼻塞">
+                <option value="cypromin">Cypromin syr. (Cyproheptadine)</option>
+                <option value="pilian">Pilian tab (Cyproheptadine)</option>
+                <option value="cetirizine">Cetirizine soln</option>
+                <option value="xyzal">Xyzal tab (Levocetirizine)</option>
+                <option value="peacesyr">Peace syr. (Triprolidine/Pseudoephedrine)</option>
+                <option value="peacetab">Peace tab. (Triprolidine/Pseudoephedrine)</option>
+            </optgroup>
+            <optgroup label="咳嗽、喘">
+                <option value="casteine">Casteine syr. (S-Carboxymethylcysteine)</option>
+                <option value="colin">Colin syr. (Chlorpheniramine/Platycodon/Glycyrrhizine)</option>
+                <option value="meptin">Meptin liq. (Procaterol)</option>
+                <option value="meptintab">Meptin-mini tab (Procaterol)</option>
+                <option value="xanthium">Xanthium (Theophylline)</option>
+                <option value="aminophyllin">Aminophyllin inj.</option>
+            </optgroup>
+            <optgroup label="嘔吐拉肚子">
+                <option value="cod">Cod</option>
+                <option value="haddock">Haddock</option>
+                <option value="salmon">Salmon</option>
+                <option value="turbot">Turbot</option>
+            </optgroup>
+            <optgroup label="抗微生物">
+                <option value="cod">Cod</option>
+                <option value="haddock">Haddock</option>
+                <option value="salmon">Salmon</option>
+                <option value="turbot">Turbot</option>
+            </optgroup>
+            <optgroup label="其他">
+                <option value="cod">Cod</option>
+                <option value="haddock">Haddock</option>
+                <option value="salmon">Salmon</option>
+                <option value="turbot">Turbot</option>
+            </optgroup>
+        </select>
+        <button action="" onclick="updateDose()">計算</button>
+        <result id="dose"></result>
+        <br>
+        <text id="description"></text>
+    </body>
+    <script>
+        function round(n, d=0) {
+            return n.toFixed(d)
+        }
+
+        let drugList = {
+            antiphen: "Syr.: 24mg/ml, 60ml/btl\n\
+            Neonates: 10~15mg/kg/dose every q6h~8h\n\
+            Infants & Children: 10~15mg/kg/dose every q4h~6h\n\
+            Children≧12yr & Adults: Max. 4gm/day",
+            depyretin: "Tab.: 500mg/tab\n\
+            Neonates: 10~15mg/kg/dose every q6h~8h\n\
+            Infants & Children: 10~15mg/kg/dose every q4h~6h\n\
+            Children≧12yr & Adults: Max. 4gm/day",
+            ibuprofen: "Susp.:20mg/ml, 60ml/btl\n\
+            Infants & Children: 5~10mg/kg/dose every q6h~8h, Max.: 40mg/kg/day",
+            diclofenac: "Supp.: 12.5mg/supp\n\
+            Rectal: 1~2mg/kg/dose",
+
+            cypromin: "Syr.: 0.4mg/ml, 60ml/btl\n\
+            Children ≥2 years and Adolescents: 0.25mg/kg/day, bid~tid\n\
+            2~6yr: 2mg q12h~q8h, Max.: 12mg/day\n\
+            7~14yr: 4mg q12h~q8h, Max.: 16mg/day",
+            pilian: "Tab.: 4mg/tab\n\
+            Children ≥2 years and Adolescents: 0.25mg/kg/day, bid~tid\n\
+            2~6yr: 2mg q12h~q8h, Max.: 12mg/day\n\
+            7~14yr: 4mg q12h~q8h, Max.: 16mg/day",
+            cetirizine: "Soln: 1mg/ml, 30ml/btl\n\
+            6~12M: 2.5ml qd\n\
+            1~2 yr:2.5ml qd~bid\n\
+            2~5 yr:2.5~5ml/day qd~bid\n\
+            ≧6 yr:5~10ml/day qd~bid",
+            xyzal: `Tab.: 5 mg/tab
+            6yr~Adults: 5mg QD
+            *陳曉能醫師會用小劑量 TID`,
+            peacesyr: `Syr.: 1ml = Triprolidine 0.25mg / Pseudoephedrine 6mg
+            Dosing based on pseudoephedrine: 4mg/kg/day tid~qid`,
+            peacetab: `Tab.: 2.5 mg/60 mg/tab
+            Dosing based on pseudoephedrine: 4mg/kg/day tid~qid`,
+            
+            casteine: `Syr.: 50mg/ml, 60ml/btl
+            <5yr: 5 ~10 ml/day divided in tid
+            5~12yr: 5ml tid
+            Adults: maintenance 7.5 ml qid`,
+            colin: `Syr.: 1ml = Chlorpheniramine 0.4mg / Platycodon 0.012ml / Polygala 0.012ml / Glycyrrhizine 0.5mg
+            6~12yr:2.5ml tid~qid`,
+            meptin: `Liq.: 5mcg/ml
+            Pediatric dose: 2.5mcg/kg/day in 2-3 divided dose`,
+            meptintab: `Tab.: 25mcg/tab
+            Pediatric dose: 2.5mcg/kg/day in 2-3 divided dose`,
+            xanthium: `Cap.: 200mg/cap
+            1# / 20kg, BID or Q12H`,
+            aminophyllin: `250mg/10ml/amp
+            * risk of arrhythmia, irritation, tachypnea
+            3mg/kg/dose Q6H, drip 30min`,
+            
+        }
+
+        function updateDose() {
+            let weight = document.getElementById("weight").value
+            let drug = document.getElementById("drug").value
+            document.getElementById("dose").innerText = calculateDose(weight, drug)
+            document.getElementById("description").innerText = drugList[drug]
+        }
+
+        function calculateDose(weight, drug) {
+            /* 
+            / 止痛退燒
+            */
+            if (drug == "antiphen") {
+                // 24mg/ml
+                // 10~15mg/kg/dose every q4h~6h
+                return `${round(10*weight/24)}~${round(15*weight/24)}ml Q4H~Q6H (Infant & Children)`
+            }
+            if (drug == "depyretin") {
+                // 500mg/tab
+                // 10~15mg/kg/dose every q4h~6h
+                return `${10*weight/500}~${15*weight/500} tab Q4H~Q6H`
+            }
+            if (drug == "ibuprofen") {
+                // 20mg/ml
+                // 5~10mg/kg/dose every q6h~8h, Max.: 40mg/kg/day
+                return `${5*weight/20}~${10*weight/20}ml Q4H~Q6H (Infant & Children)`
+            }
+            if (drug == "diclofenac") {
+                // Supp.: 12.5mg/supp
+                // Rectal: 1~2mg/kg/dose
+                return `${round(1*weight/12.5)}~${round(2*weight/12.5)} supp. Q6H`
+            }
+            /*
+            / 抗組織胺、鼻塞
+            */
+            if (drug == "cypromin") {
+                // Syr.: 0.4mg/ml, 60ml/btl 
+                // 0.25mg/kg/day, bid~tid 
+                return `${round(0.625*weight/3, 1)}ml TID (≥2yr)`
+            }
+            if (drug == "pilian") {
+                // Tab.: 4mg/tab
+                // 2~6yr: 2mg q12h~q8h, Max.: 12mg/day
+                // 7~14yr: 4mg q12h~q8h, Max.: 16mg/day
+                return `2-6yr 0.5 tab TID, 7-14yr 1 tab TID`
+            }
+            if (drug == "cetirizine") {
+                return `6~12M: 2.5ml qd, 1~5 yr:2.5ml bid, ≧6 yr:5ml bid`
+            }
+            if (drug == "xyzal") {
+                return `1 tab QD (≧6yr)`
+            }
+            if (drug == "peacesyr") {
+                return `${round(4*weight/6/3, 1)}ml TID`
+            }
+            if (drug == "peacetab") {
+                return `${round(4*weight/60, 1)} tab TID`
+            }
+            /*
+            / 咳嗽
+            */
+            if (drug == "casteine") {
+                return `<5yr: 3.3ml TID, 5~12yr: 5ml TID, >12yr: 7.5 ml QID`
+            }
+            if (drug == "colin") {
+                return `${round(weight/3, 1)}ml TID`
+            }
+            if (drug == "meptin") {
+                return `${round(weight/4, 1)}ml BID`
+            }
+            if (drug == "meptintab") {
+                return `${round(weight/20, 1)} tab BID`
+            }
+            if (drug == "xanthium") {
+                return `${round(weight/20, 1)} tab BID or Q12H`
+            }
+            if (drug == "aminophyllin") {
+                return `${(3*weight/250)}`
+            }
+            if (drug == "bricanyl") {
+
+            }
+        }
+    </script>
+</html>
