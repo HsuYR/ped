@@ -3,6 +3,7 @@
         <title>兒科劑量小幫手</title>
         <style>
             body, body * {
+                font-family: Arial, Helvetica, sans-serif;
                 font-size: 28pt;
             }
         </style>
@@ -136,7 +137,7 @@
             if (drug == "antiphen") {
                 // 24mg/ml
                 // 10~15mg/kg/dose every q4h~6h
-                return `${round(10*weight/24)}~${round(15*weight/24)}ml Q4H~Q6H (Infant & Children)`
+                return `${round(weight/2, 1)}ml Q4H~Q6H (Infant & Children)`
             }
             if (drug == "depyretin") {
                 // 500mg/tab
