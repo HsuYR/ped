@@ -9,6 +9,91 @@
         </style>
     </head>
     <body>
+        <form id="present-illness" name="present-illness">
+            
+            <h2>Present Illness</h2>
+            <p>This is a 
+                <input type="text" id="age" size="2">-year-old 
+                <input type="radio" id="sex-boy" name="sex" value="boy" checked><label for="sex-boy">boy</label>
+                <input type="radio" id="sex-girl" name="sex" value="girl"><label for="sex-girl">girl</label>
+                with <input type="text" name="underly" value="no known underlying disease">. 
+                The patient was vaccinated as scheduled and had achieved developmental milestone. 
+                According to the patient's family, 
+            </p>
+            <p>
+                <input type="radio" id="cc-headache" name="cc" value="headache"><label for="cc-headache">headache</label>
+                <input type="radio" id="cc-dizziness" name="cc" value="dizziness"><label for="cc-dizziness">dizziness</label>
+                <input type="radio" id="cc-sorethroat" name="cc" value="sorethroat"><label for="cc-sorethroat">sorethroat</label>
+                <input type="radio" id="cc-horseness" name="cc" value="horseness"><label for="cc-horseness">horseness</label>
+                <input type="radio" id="cc-rhinorrhea" name="cc" value="rhinorrhea"><label for="cc-rhinorrhea">rhinorrhea</label>
+                <input type="radio" id="cc-nasal-discharge" name="cc" value="nasal discharge"><label for="cc-nasal-discharge">nasal discharge</label>
+                <input type="radio" id="cc-nasal-congestion" name="cc" value="nasal congestion"><label for="cc-nasal-congestion">nasal congestion</label>
+                <input type="radio" id="cc-productive-cough" name="cc" value="productive cough"><label for="cc-productive-cough">productive cough</label>
+                <input type="radio" id="cc-shortness-of-breath" name="cc" value="shortness of breath"><label for="cc-shortness-of-breath">shortness of breath</label>
+                <input type="radio" id="cc-chest-tightness" name="cc" value="chest tightness"><label for="cc-chest-tightness">chest tightness</label>
+                <input type="radio" id="cc-abdoninal-pain" name="cc" value="abdoninal pain"><label for="cc-abdoninal-pain">abdoninal pain</label>
+                <input type="radio" id="cc-diarrhea" name="cc" value="diarrhea"><label for="cc-diarrhea">diarrhea</label>
+                <input type="radio" id="cc-dysuria" name="cc" value="dysuria"><label for="cc-dysuria">dysuria</label>
+                <input type="radio" id="cc-urinary-frequency" name="cc" value="urinary frequency"><label for="cc-urinary-frequency">urinary frequency</label>
+                <input type="radio" id="cc-poor-appetite" name="cc" value="poor appetite"><label for="cc-poor-appetite">poor appetite</label>
+                <input type="radio" id="cc-poor-activity" name="cc" value="poor activity"><label for="cc-poor-activity">poor activity</label>
+            </p>
+            <p>
+                for <input type="text" id="duration" size="2" value="3 days"> 
+                accompanied with 
+            </p>
+            <p>
+                <input type="checkbox" id="sx-headache" name="sx" value="headache"><label for="sx-headache">headache</label>
+                <input type="checkbox" id="sx-dizziness" name="sx" value="dizziness"><label for="sx-dizziness">dizziness</label>
+                <input type="checkbox" id="sx-sorethroat" name="sx" value="sorethroat"><label for="sx-sorethroat">sorethroat</label>
+                <input type="checkbox" id="sx-horseness" name="sx" value="horseness"><label for="sx-horseness">horseness</label>
+                <input type="checkbox" id="sx-rhinorrhea" name="sx" value="rhinorrhea"><label for="sx-rhinorrhea">rhinorrhea</label>
+                <input type="checkbox" id="sx-nasal-discharge" name="sx" value="nasal discharge"><label for="sx-nasal-discharge">nasal discharge</label>
+                <input type="checkbox" id="sx-nasal-congestion" name="sx" value="nasal congestion"><label for="sx-nasal-congestion">nasal congestion</label>
+                <input type="checkbox" id="sx-productive-cough" name="sx" value="productive cough"><label for="sx-productive-cough">productive cough</label>
+                <input type="checkbox" id="sx-shortness-of-breath" name="sx" value="shortness of breath"><label for="sx-shortness-of-breath">shortness of breath</label>
+                <input type="checkbox" id="sx-chest-tightness" name="sx" value="chest tightness"><label for="sx-chest-tightness">chest tightness</label>
+                <input type="checkbox" id="sx-abdoninal-pain" name="sx" value="abdoninal pain"><label for="sx-abdoninal-pain">abdoninal pain</label>
+                <input type="checkbox" id="sx-diarrhea" name="sx" value="diarrhea"><label for="sx-diarrhea">diarrhea</label>
+                <input type="checkbox" id="sx-dysuria" name="sx" value="dysuria"><label for="sx-dysuria">dysuria</label>
+                <input type="checkbox" id="sx-urinary-frequency" name="sx" value="urinary frequency"><label for="sx-urinary-frequency">urinary frequency</label>
+                <input type="checkbox" id="sx-poor-appetite" name="sx" value="poor appetite"><label for="sx-poor-appetite">poor appetite</label>
+                <input type="checkbox" id="sx-poor-activity" name="sx" value="poor activity"><label for="sx-poor-activity">poor activity</label>
+            </p>
+            <p>
+                was noted. The patient had <input type="text" id="cluster-history" value="no cluster history">.
+            </p>
+            <p>
+                <input type="text" id="progression" value="Symptom progression was noted." style="width: 100%">
+            </p>
+            <p>
+                <textarea type="text" id="lmd-visit" style="width: 100%">The patient visited LMD where medication were given, but the condition deteriorated.</textarea>
+            </p>
+            <p>
+                Therefore, the patient was brought to our 
+                <input type="radio" id="visit-er" name="visit" value="emergency department" checked><label for="visit-er">emergency department</label>
+                <input type="radio" id="visit-opd" name="visit" value="outpatient department"><label for="visit-opd">outpatient department</label>
+                for help.
+            </p>
+
+            <p>
+                Upon arrival, physical examination showed
+            </p>
+            <p id="signs"></p>
+            <p id="auscultSides"></p>
+            <p id="auscults"></p>
+            <p id="labs"></p>
+            <p id="urine"></p>
+            <p id="cxrSides"></p>
+            <p id="cxr"></p>
+            <p><input type="checkbox" id="steeple" value="Neck X-ray showed steeple sign"><label for="steeple">Steeple Sign</label></p>
+            <p>Under the impression of</p>
+            <p id="impression"></p>
+
+        </form>
+        <div><button onclick="writePi()">Write!</button></div>
+        <p id="present-illness-text"></p>
+
         <div>
             <label for="weight">體重：</label><input type="number" name="weight" id="weight" value=20> kg
             <select id="drug">
@@ -66,6 +151,126 @@
         </div>
     </body>
     <script>
+        function initPiForm() {
+            function createInputElement(type, id, name, value, appendDOM) {
+                let inputDOM = document.createElement("input")
+                inputDOM.type=type
+                inputDOM.id=`${name}-${value.replace(" ", "-")}`
+                inputDOM.name=`${name}`
+                inputDOM.value=value
+
+                let labelDOM = document.createElement("label")
+                labelDOM.htmlFor=`${name}-${value.replace(" ", "-")}`
+                labelDOM.innerText=value
+                appendDOM.appendChild(inputDOM)
+                appendDOM.appendChild(labelDOM)
+                return
+            }
+
+            let piForm = document.querySelector("#present-illness")
+            let sex = ["boy", "girl"]
+            let symptoms = [
+                "headache",
+                "dizziness",
+                "sorethroat",
+                "horseness",
+                "rhinorrhea",
+                "nasal discharge",
+                "nasal congestion",
+                "productive cough",
+                "shortness of breath",
+                "chest tightness",
+                "abdominal pain",
+                "diarrhea",
+                "dysuria",
+                "urinary frequency",
+                "poor appetite",
+                "poor activity",
+            ]
+            let signs = [
+                "injected throat",
+                "injected tonsil",
+                "injected eardrum",
+            ]
+            signs.forEach(sign => createInputElement("checkbox", "sign", "sign", sign, document.querySelector("#signs")))
+
+            let auscultSides = [
+                "bilateral",
+                "right",
+                "left",
+            ]
+            auscultSides.forEach(auscultSide => createInputElement("checkbox", "auscultSide", "auscultSide", auscultSide, document.querySelector("#auscultSides")))
+            let auscults = [
+                "rales",
+                "wheezing",
+                "stridor",
+                "ronchi",
+            ]
+            auscults.forEach(auscult => createInputElement("checkbox", "auscult", "auscult", auscult, document.querySelector("#auscults")))
+            
+            let labs = [
+                "leukocytosis",
+                "elevated CRP",
+                "elevated liver enzyme",
+                "anti-mycoplasma IgM positive",
+                "Influenza Ag positive",
+                "Covid-19 positive",
+            ]
+            labs.forEach(lab => createInputElement("checkbox", "lab", "lab", lab, document.querySelector("#labs")))
+
+            let urine = [
+                "pyuria",
+                "hematuria",
+                "bacteruria",
+            ]
+            let cxrSides = [
+                "bilateral",
+                "RUL",
+                "RLL",
+                "LUL",
+                "LLL",
+            ]
+            let cxr = [
+                "infiltration",
+                "pneumonia patch",
+            ]
+            let impression = [
+                "pneumonia due to mycoplasma infection",
+                "pneumonia due to influenza A infection",
+                "pneumonia due to covid-19 infection",
+                "pyuria, suspect urinary tract infection",
+                "bronchitis",
+                "tonsillitis",
+                "pharyngitis",
+            ]
+        }
+
+        function writePi() {
+            let form=document.getElementById("present-illness")
+            console.log(document.querySelectorAll("[name=sx]:checked"))
+            document.getElementById("present-illness-text").innerText = 
+            `This is a ${document.querySelector("#age").value}-year-old ${document.querySelector("[name=sex]:checked").value} with ${document.querySelector("[name=underly]").value}. \
+            The patient was vaccinated as scheduled and had achieved developmental milestone. \
+            According to the patient's family, \
+            ${document.querySelector("[name=cc]:checked").value} for ${document.querySelector("#duration").value} accompanied with ${[...document.querySelectorAll(`[name=sx]:checked:not([value=${document.querySelector("[name=cc]:checked").value}])`)].map(e => e.value).join(", ")} was noted. \
+            The patient denied ${[...document.querySelectorAll(`[name=sx]:not(:checked):not([value=${document.querySelector("[name=cc]:checked").value}])`)].map(e => e.value).join(", ")}. \
+            The patient had ${document.querySelector("#cluster-history").value}. \
+            ${document.querySelector("#progression").value} \
+            ${document.querySelector("#lmd-visit").innerText} \
+            Therefore, the patient was brought to our ${document.querySelector("[name=visit]:checked").value} for help.
+            
+            Upon arrival, physical examination showed ${[...document.querySelectorAll(`[name=sign]:checked`)].map(e => e.value).join(", ")}. \
+            ${document.querySelector("[name=auscultSide]:checked").value} ${[...document.querySelectorAll(`[name=auscult]:checked`)].map(e => e.value).join(", ")} was noted. \
+            Laboratory data showed ${[...document.querySelectorAll(`[name=lab]:checked`)].map(e => e.value).join(", ")}. \
+            {Urine analysis showed {pyuria/hematuria/bacteruria}.} 
+            Chest X-ray showed {Bilateral infiltration/RUL/RLL/LUL/LLL pneumonia patch}. 
+            {Neck X-ray showed steeple sign.} 
+            Under the impression of {pneumonia due to {mycoplasma infection/influenza A infection/covid-19 infection/?} / pyuria, suspect urinary tract infection / bronchitis / tonsillitis / pharyngitis}, 
+            the patient was admitted to our ward for further evaluation and treatment.
+            `
+        }
+
+
         function round(n, d=0) {
             return n.toFixed(d)
         }
@@ -205,5 +410,6 @@
 
             }
         }
+        window.addEventListener("load", initPiForm);
     </script>
 </html>
