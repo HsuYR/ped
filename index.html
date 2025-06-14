@@ -249,19 +249,19 @@
             let form=document.getElementById("present-illness")
             console.log(document.querySelectorAll("[name=sx]:checked"))
             document.getElementById("present-illness-text").innerText = 
-            `This is a ${document.querySelector("#age").value}-year-old ${document.querySelector("[name=sex]:checked").value} with ${document.querySelector("[name=underly]").value}. \
+            `This is a ${document.querySelector("#age")?.value}-year-old ${document.querySelector("[name=sex]:checked")?.value} with ${document.querySelector("[name=underly]")?.value}. \
             The patient was vaccinated as scheduled and had achieved developmental milestone. \
             According to the patient's family, \
-            ${document.querySelector("[name=cc]:checked").value} for ${document.querySelector("#duration").value} accompanied with ${[...document.querySelectorAll(`[name=sx]:checked:not([value=${document.querySelector("[name=cc]:checked").value}])`)].map(e => e.value).join(", ")} was noted. \
-            The patient denied ${[...document.querySelectorAll(`[name=sx]:not(:checked):not([value=${document.querySelector("[name=cc]:checked").value}])`)].map(e => e.value).join(", ")}. \
-            The patient had ${document.querySelector("#cluster-history").value}. \
-            ${document.querySelector("#progression").value} \
-            ${document.querySelector("#lmd-visit").innerText} \
-            Therefore, the patient was brought to our ${document.querySelector("[name=visit]:checked").value} for help.
+            ${document.querySelector("[name=cc]:checked")?.value} for ${document.querySelector("#duration")?.value} accompanied with ${[...document.querySelectorAll(`[name=sx]:checked:not([value=${document.querySelector("[name=cc]:checked")?.value}])`)]?.map(e => e.value).join(", ")} was noted. \
+            The patient denied ${[...document.querySelectorAll(`[name=sx]:not(:checked):not([value=${document.querySelector("[name=cc]:checked")?.value}])`)].map(e => e.value).join(", ")}. \
+            The patient had ${document.querySelector("#cluster-history")?.value}. \
+            ${document.querySelector("#progression")?.value} \
+            ${document.querySelector("#lmd-visit")?.innerText} \
+            Therefore, the patient was brought to our ${document.querySelector("[name=visit]:checked")?.value} for help.
             
-            Upon arrival, physical examination showed ${[...document.querySelectorAll(`[name=sign]:checked`)].map(e => e.value).join(", ")}. \
-            ${document.querySelector("[name=auscultSide]:checked").value} ${[...document.querySelectorAll(`[name=auscult]:checked`)].map(e => e.value).join(", ")} was noted. \
-            Laboratory data showed ${[...document.querySelectorAll(`[name=lab]:checked`)].map(e => e.value).join(", ")}. \
+            Upon arrival, physical examination showed ${[...document.querySelectorAll(`[name=sign]:checked`)]?.map(e => e.value).join(", ")}. \
+            ${document.querySelector("[name=auscultSide]:checked")?.value} ${[...document.querySelectorAll(`[name=auscult]:checked`)]?.map(e => e.value).join(", ")} was noted. \
+            Laboratory data showed ${[...document.querySelectorAll(`[name=lab]:checked`)]?.map(e => e.value).join(", ")}. \
             {Urine analysis showed {pyuria/hematuria/bacteruria}.} 
             Chest X-ray showed {Bilateral infiltration/RUL/RLL/LUL/LLL pneumonia patch}. 
             {Neck X-ray showed steeple sign.} 
