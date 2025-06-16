@@ -67,7 +67,7 @@
                 <input type="text" id="progression" value="Symptom progression was noted." style="width: 100%">
             </p>
             <p>
-                <textarea type="text" id="lmd-visit" style="width: 100%">The patient visited LMD where medication were given, but the condition deteriorated.</textarea>
+                <textarea type="text" id="lmd-visit" style="width: 100%">The patient was taken to LMD where medication were given, but the condition deteriorated.</textarea>
             </p>
             <p>
                 Therefore, the patient was brought to our 
@@ -83,12 +83,12 @@
             <p id="auscultSides"></p>
             <p id="auscults"></p>
             <p id="labs"></p>
-            <p id="urine"></p>
+            <p id="urines"></p>
             <p id="cxrSides"></p>
-            <p id="cxr"></p>
+            <p id="cxrs"></p>
             <p><input type="checkbox" id="steeple" value="Neck X-ray showed steeple sign"><label for="steeple">Steeple Sign</label></p>
             <p>Under the impression of</p>
-            <p id="impression"></p>
+            <p id="impressions"></p>
 
         </form>
         <div><button onclick="writePi()">Write!</button></div>
@@ -218,11 +218,13 @@
             ]
             labs.forEach(lab => createInputElement("checkbox", "lab", "lab", lab, document.querySelector("#labs")))
 
-            let urine = [
+            let urines = [
                 "pyuria",
                 "hematuria",
                 "bacteruria",
             ]
+            urines.forEach(urine => createInputElement("checkbox", "urine", "urine", urine, document.querySelector("#urines")))
+
             let cxrSides = [
                 "bilateral",
                 "RUL",
@@ -230,11 +232,15 @@
                 "LUL",
                 "LLL",
             ]
-            let cxr = [
+            cxrSides.forEach(cxrSide => createInputElement("checkbox", "cxrSide", "cxrSide", cxrSide, document.querySelector("#cxrSides")))
+
+            let cxrs = [
                 "infiltration",
                 "pneumonia patch",
             ]
-            let impression = [
+            cxrs.forEach(cxr => createInputElement("checkbox", "cxr", "cxr", cxr, document.querySelector("#cxrs")))
+
+            let impressions = [
                 "pneumonia due to mycoplasma infection",
                 "pneumonia due to influenza A infection",
                 "pneumonia due to covid-19 infection",
@@ -243,31 +249,32 @@
                 "tonsillitis",
                 "pharyngitis",
             ]
+            impressions.forEach(impression => createInputElement("checkbox", "impression", "impression", impression, document.querySelector("#impressions")))
+
         }
 
         function writePi() {
-            let form=document.getElementById("present-illness")
-            console.log(document.querySelectorAll("[name=sx]:checked"))
+            
             document.getElementById("present-illness-text").innerText = 
             `This is a ${document.querySelector("#age")?.value}-year-old ${document.querySelector("[name=sex]:checked")?.value} with ${document.querySelector("[name=underly]")?.value}. \
             The patient was vaccinated as scheduled and had achieved developmental milestone. \
             According to the patient's family, \
-            ${document.querySelector("[name=cc]:checked")?.value} for ${document.querySelector("#duration")?.value} accompanied with ${[...document.querySelectorAll(`[name=sx]:checked:not([value=${document.querySelector("[name=cc]:checked")?.value}])`)]?.map(e => e.value).join(", ")} was noted. \
-            The patient denied ${[...document.querySelectorAll(`[name=sx]:not(:checked):not([value=${document.querySelector("[name=cc]:checked")?.value}])`)].map(e => e.value).join(", ")}. \
+            ${document.querySelector("[name=cc]:checked")?.value} for ${document.querySelector("#duration")?.value} accompanied with ${[...document.querySelectorAll(`[name=sx]:checked:not([value='${document.querySelector("[name=cc]:checked")?.value}'])`)]?.map(e => e.value).join(", ")} was noted. \
+            The patient denied ${[...document.querySelectorAll(`[name=sx]:not(:checked):not([value='${document.querySelector("[name=cc]:checked")?.value}'])`)].map(e => e.value).join(", ")}. \
             The patient had ${document.querySelector("#cluster-history")?.value}. \
             ${document.querySelector("#progression")?.value} \
-            ${document.querySelector("#lmd-visit")?.innerText} \
+            ${document.querySelector("#lmd-visit")?.value} \
             Therefore, the patient was brought to our ${document.querySelector("[name=visit]:checked")?.value} for help.
-            
+
             Upon arrival, physical examination showed ${[...document.querySelectorAll(`[name=sign]:checked`)]?.map(e => e.value).join(", ")}. \
             ${document.querySelector("[name=auscultSide]:checked")?.value} ${[...document.querySelectorAll(`[name=auscult]:checked`)]?.map(e => e.value).join(", ")} was noted. \
             Laboratory data showed ${[...document.querySelectorAll(`[name=lab]:checked`)]?.map(e => e.value).join(", ")}. \
-            {Urine analysis showed {pyuria/hematuria/bacteruria}.} 
-            Chest X-ray showed {Bilateral infiltration/RUL/RLL/LUL/LLL pneumonia patch}. 
-            {Neck X-ray showed steeple sign.} 
-            Under the impression of {pneumonia due to {mycoplasma infection/influenza A infection/covid-19 infection/?} / pyuria, suspect urinary tract infection / bronchitis / tonsillitis / pharyngitis}, 
-            the patient was admitted to our ward for further evaluation and treatment.
-            `
+            ${document.querySelectorAll(`[name=urine]:checked`)?.length>0 ? "Urine analysis showed" : ""} \
+            ${[...document.querySelectorAll(`[name=urine]:checked`)]?.map(e => e.value).join(", ")}${document.querySelectorAll(`[name=urine]:checked`)?.length>0 ? "." : ""} \
+            Chest X-ray showed ${document.querySelector("[name=cxrSide]:checked")?.value} ${[...document.querySelectorAll(`[name=cxr]:checked`)]?.map(e => e.value).join(", ")}. \
+            ${document.querySelectorAll(`[name=steeple]:checked`).length>0 ? "Neck X-ray showed steeple sign." : ""}
+            Under the impression of ${[...document.querySelectorAll(`[name=impression]:checked`)]?.map(e => e.value).join(", ")}, \
+            the patient was admitted to our ward for further evaluation and treatment.`
         }
 
 
