@@ -2,9 +2,185 @@
     <head>
         <title>兒科劑量小幫手</title>
         <style>
-            body, body * {
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 28pt;
+            :root {
+                --primary-color: #4a90e2;
+                --secondary-color: #6ac0ff;
+                --accent-color: #ff6b6b;
+                --text-color: #333;
+                --light-bg: #f5f8fa;
+                --border-color: #ddd;
+            }
+
+            body {
+                font-family: 'Noto Sans TC', Arial, Helvetica, sans-serif;
+                font-size: 16pt;
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--light-bg);
+                margin: 0;
+                padding: 20px;
+            }
+
+            h2 {
+                color: var(--primary-color);
+                border-bottom: 2px solid var(--primary-color);
+                padding-bottom: 10px;
+                margin-top: 30px;
+                font-size: 24pt;
+            }
+
+            input[type="text"], 
+            input[type="number"],
+            textarea,
+            select {
+                border: 1px solid var(--border-color);
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 16pt;
+                transition: border-color 0.3s;
+            }
+
+            input[type="text"]:focus,
+            input[type="number"]:focus,
+            textarea:focus,
+            select:focus {
+                border-color: var(--primary-color);
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+            }
+
+            textarea {
+                width: 100%;
+                min-height: 100px;
+                resize: vertical;
+            }
+
+            input[type="radio"],
+            input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+
+            label {
+                margin-right: 15px;
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            button {
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 6px;
+                font-size: 16pt;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: var(--secondary-color);
+            }
+
+            p {
+                margin: 15px 0;
+            }
+
+            #present-illness-text {
+                background-color: white;
+                border: 1px solid var(--border-color);
+                border-radius: 6px;
+                padding: 15px;
+                margin-top: 20px;
+            }
+
+            /* 藥物計算區塊樣式 */
+            div:has(#weight) {
+                background-color: white;
+                border-radius: 6px;
+                padding: 15px;
+                margin-top: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            #dose {
+                font-size: 20pt;
+                color: var(--accent-color);
+                font-weight: bold;
+                display: block;
+                margin-top: 15px;
+            }
+
+            #description {
+                background-color: #f0f7ff;
+                border-left: 4px solid var(--primary-color);
+                padding: 10px 15px;
+                margin-top: 15px;
+                white-space: pre-wrap;
+                font-size: 14pt;
+            }
+
+            /* 選項組樣式 */
+            optgroup {
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+
+            /* 響應式設計 */
+            @media (max-width: 768px) {
+                body {
+                    font-size: 14pt;
+                    padding: 10px;
+                }
+                
+                h2 {
+                    font-size: 20pt;
+                }
+                
+                button {
+                    font-size: 14pt;
+                    padding: 8px 16px;
+                }
+                
+                input[type="text"], 
+                input[type="number"],
+                textarea,
+                select {
+                    font-size: 14pt;
+                }
+                
+                #dose {
+                    font-size: 18pt;
+                }
+            }
+
+            /* 症狀和體徵選擇區塊 */
+            p:has([name="cc"]),
+            p:has([name="sx"]),
+            #signs,
+            #auscultSides,
+            #auscults,
+            #labs,
+            #urines,
+            #cxrSides,
+            #cxrs,
+            #impressions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                background-color: white;
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid var(--border-color);
+            }
+
+            /* 添加一些間距和分隔 */
+            form {
+                max-width: 1200px;
+                margin: 0 auto;
             }
         </style>
     </head>
