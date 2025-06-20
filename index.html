@@ -199,6 +199,7 @@
             <p>
                 <input type="radio" id="cc-headache" name="cc" value="headache"><label for="cc-headache">headache</label>
                 <input type="radio" id="cc-dizziness" name="cc" value="dizziness"><label for="cc-dizziness">dizziness</label>
+                <input type="radio" id="cc-fever" name="cc" value="fever"><label for="cc-fever">fever</label>
                 <input type="radio" id="cc-sorethroat" name="cc" value="sorethroat"><label for="cc-sorethroat">sorethroat</label>
                 <input type="radio" id="cc-horseness" name="cc" value="horseness"><label for="cc-horseness">horseness</label>
                 <input type="radio" id="cc-rhinorrhea" name="cc" value="rhinorrhea"><label for="cc-rhinorrhea">rhinorrhea</label>
@@ -221,6 +222,7 @@
             <p>
                 <input type="checkbox" id="sx-headache" name="sx" value="headache"><label for="sx-headache">headache</label>
                 <input type="checkbox" id="sx-dizziness" name="sx" value="dizziness"><label for="sx-dizziness">dizziness</label>
+                <input type="checkbox" id="sx-fever" name="sx" value="fever"><label for="sx-fever">fever</label>
                 <input type="checkbox" id="sx-sorethroat" name="sx" value="sorethroat"><label for="sx-sorethroat">sorethroat</label>
                 <input type="checkbox" id="sx-horseness" name="sx" value="horseness"><label for="sx-horseness">horseness</label>
                 <input type="checkbox" id="sx-rhinorrhea" name="sx" value="rhinorrhea"><label for="sx-rhinorrhea">rhinorrhea</label>
@@ -237,10 +239,10 @@
                 <input type="checkbox" id="sx-poor-activity" name="sx" value="poor activity"><label for="sx-poor-activity">poor activity</label>
             </p>
             <p>
-                was noted. The patient had <input type="text" id="cluster-history" value="no cluster history">.
+                was noted. The patient had <input type="text" id="cluster-history" value="cluster history with">.
             </p>
             <p>
-                <input type="text" id="progression" value="Symptom progression was noted." style="width: 100%">
+                <input type="text" id="progression" value="" style="width: 100%">
             </p>
             <p>
                 <textarea type="text" id="lmd-visit" style="width: 100%">The patient was taken to LMD where medication were given, but the condition deteriorated.</textarea>
@@ -386,6 +388,8 @@
             
             let labs = [
                 "leukocytosis",
+                "neutropenia",
+                "microcytic anemia",
                 "elevated CRP",
                 "elevated liver enzyme",
                 "anti-mycoplasma IgM positive",
@@ -418,12 +422,16 @@
 
             let impressions = [
                 "pneumonia due to mycoplasma infection",
-                "pneumonia due to influenza A infection",
-                "pneumonia due to covid-19 infection",
+                "fever due to influenza A infection",
+                "covid-19 disease",
+                "viral croup with covid-19 disease",
                 "pyuria, suspect urinary tract infection",
                 "bronchitis",
                 "tonsillitis",
                 "pharyngitis",
+                "otitis media",
+                "acute gastroenteritis",
+                "acute hepatitis",
             ]
             impressions.forEach(impression => createInputElement("checkbox", "impression", "impression", impression, document.querySelector("#impressions")))
 
